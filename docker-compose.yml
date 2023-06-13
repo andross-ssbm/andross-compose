@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: your_database
+    ports:
+      - "5432:5432"
+    volumes:
+        - db_data:/var/lib/postgresql/data
+    networks:
+      - andross
+
+  web-api:
+    image: ./andross-api
+    restart: always
+    environment:
+      DB_HOST: your_db_host
+      DB_PORT: your_db_port
+      DB_NAME: your_database
+      DB_USER: your_username
+      DB_PASSWORD: your_password
+    ports:
+      - "5000:5000"
+
+networks:
+  andross:
+    driver: bridge
+
+
+volumes:
+  db_data:

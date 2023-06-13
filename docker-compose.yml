@@ -35,7 +35,7 @@ services:
       - db
       - web-api
     environment:
-      API_URL: web-api
+      API_URL: web-api:5000
       API_KEY: your_api_key
       DISCORD_COMMAND_PREFIX: $
       DISCORD_TOKEN: your_discord_token

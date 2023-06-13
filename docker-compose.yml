@@ -19,13 +19,25 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: your_db_host
+      DB_HOST: db
       DB_PORT: your_db_port
       DB_NAME: your_database
       DB_USER: your_username
       DB_PASSWORD: your_password
     ports:
       - "5000:5000"
+
+  discord-bot:
+    build: ./Andross/Andross
+    restart: always
+    depends_on:
+      - db
+      - web-api
+    environment:
+      API_URL: web-api
+      API_KEY: your_api_key
+      DISCORD_COMMAND_PREFIX: $
+      DISCORD_TOKEN: your_discord_token
 
 volumes:
   db_data:

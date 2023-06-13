@@ -16,6 +16,8 @@ services:
   web-api:
     build: ./andross-api
     restart: always
+    depends_on:
+      - db
     environment:
       DB_HOST: your_db_host
       DB_PORT: your_db_port

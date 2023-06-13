@@ -12,8 +12,6 @@ services:
       - "5432:5432"
     volumes:
         - db_data:/var/lib/postgresql/data
-    networks:
-      - andross
 
   web-api:
     build: ./andross-api
@@ -26,13 +24,6 @@ services:
       DB_PASSWORD: your_password
     ports:
       - "5000:5000"
-    networks:
-      - andross
-
-networks:
-  andross:
-    driver: bridge
-
 
 volumes:
   db_data:
